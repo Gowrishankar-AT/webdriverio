@@ -19,5 +19,15 @@ await expect(browser).toHaveTitle('ProtoCommerce'); // exact match // partial ma
         
         
     }
+
+    async addtocart(productName) {
+        // Find the cart button relative to the product name
+const cartButton = await $("//a[text()='"+productName+"']/ancestor::div[contains(@class,'card-body')]/following-sibling::div[contains(@class,'card-footer')]//button[contains(@class,'btn btn-info')]");
+await cartButton.click();
+const checkout = await $('//a[starts-with(text()," Checkout")]');
+await checkout.click();
+
+
+    }
 }
 module.exports = new HomePage();
